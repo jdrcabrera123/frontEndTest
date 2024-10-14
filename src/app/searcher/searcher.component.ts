@@ -12,7 +12,6 @@ import { UserClass } from '../user/user-class';
   styleUrl: './searcher.component.css',
 })
 export class SearcherComponent implements OnInit {
-  // Set initial value to indicate "Elige tu documento"
   selectedDocument = new FormControl('', {
     nonNullable: true,
     validators: [Validators.required],
@@ -46,7 +45,6 @@ export class SearcherComponent implements OnInit {
   loadUser(): void {
     this.loading = true;
 
-    // Check if "Pasaporte" is selected
     if (this.isPassportSelected()) {
       this.handlePassportSelection();
       return;
@@ -54,11 +52,10 @@ export class SearcherComponent implements OnInit {
 
     const id = this.documentCtrl.value;
     if (!id) {
-      this.loading = false; // Handle empty input
+      this.loading = false;
       return;
     }
 
-    // Proceed with fetching the user for "Cédula de ciudadanía"
     this.fetchUserById(Number(id));
   }
 
@@ -68,7 +65,7 @@ export class SearcherComponent implements OnInit {
 
   private handlePassportSelection(): void {
     this.resetUserState();
-    this.userFound.emit(undefined); // Emit undefined user
+    this.userFound.emit(undefined);
   }
 
   private fetchUserById(id: number): void {
@@ -89,7 +86,7 @@ export class SearcherComponent implements OnInit {
 
   private handleUserFetchError(error: any): void {
     this.resetUserState();
-    this.userFound.emit(undefined); // Emit undefined user on error
+    this.userFound.emit(undefined);
     console.error('Error fetching user:', error);
   }
 
@@ -105,7 +102,6 @@ export class SearcherComponent implements OnInit {
 
   thousandSeparators(event: Event): void {
     const inputElement = event.target as HTMLInputElement;
-    const thousandsSeparatorValue = inputElement.value.replace(/,/g, ''); // Remove commas
-    this.documentCtrl.setValue(thousandsSeparatorValue);
+    const thousandsSeparatorValue = inputElement.value.replace(/,/g, '');
   }
 }

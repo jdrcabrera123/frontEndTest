@@ -14,19 +14,19 @@ export class FoundUserComponent {
 
   ngOnChanges() {
     if (!this.user) {
-      this.resetUser(); // Call the method to reset user values
+      this.resetUser();
     }
   }
 
   resetUser() {
     this.user = {
-      id: 0, // or null, depending on your logic
+      id: 0,
       nombre: '',
       primerApellido: '',
       segundoApellido: '',
       telefono: '',
       direccion: '',
       ciudad: '',
-    }; // Set default values for all properties
+    };
   }
 }
