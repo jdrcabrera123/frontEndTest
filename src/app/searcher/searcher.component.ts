@@ -12,6 +12,7 @@ import { UserClass } from '../user/user-class';
   styleUrl: './searcher.component.css',
 })
 export class SearcherComponent implements OnInit {
+  // Set initial value to indicate "Elige tu documento"
   selectedDocument = new FormControl('', {
     nonNullable: true,
     validators: [Validators.required],
@@ -103,5 +104,6 @@ export class SearcherComponent implements OnInit {
   thousandSeparators(event: Event): void {
     const inputElement = event.target as HTMLInputElement;
     const thousandsSeparatorValue = inputElement.value.replace(/,/g, '');
+    this.documentCtrl.setValue(thousandsSeparatorValue);
   }
 }
