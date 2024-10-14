@@ -1,0 +1,65 @@
+<div class="container mt-5 mb-5 d-flex justify-content-center">
+  <div class="card px-1 py-4">
+    <div class="card-body">
+      <h6 class="card-title mb-3 text-secondary">
+        Todos los campos son obligatorios
+      </h6>
+
+      <div class="row mt-4">
+        <div class="col-sm-12">
+          <div class="form-group">
+            <label class="text-primary small">Tipo de documento</label>
+            <select class="form-control" [formControl]="selectedDocument">
+              <option value="" disabled selected>Elige tu documento</option>
+              <option value="identificationNumber">Cédula de ciudadanía</option>
+              <option value="passport">Pasaporte</option>
+            </select>
+            <span class="message-warning text-secondary">
+              * Selecciona un documento
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-2">
+        <div class="col-sm-12">
+          <div class="form-group">
+            <label class="text-primary small">Número de documento</label>
+            <div class="input-group">
+              <input
+                class="form-control"
+                type="text"
+                placeholder=" "
+                [value]="formatNumber(documentCtrl.value)"
+                (input)="thousandSeparators($event)"
+                name="idNumber"
+                required
+              />
+            </div>
+            <span class="message-warning small text-secondary">
+              *(mín 8 - máx 11 números, no letras)
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-4 bg-">
+        <button
+          type="button"
+          class="btn btn-primary rounded-pill px-5"
+          [disabled]="!canSubmit"
+          [ngClass]="{ 'btn-secondary': !canSubmit }"
+          (click)="loadUser()"
+        >
+          Buscar
+        </button>
+      </div>
+    </div>
+    <h1
+      class="text-center text-danger small"
+      *ngIf="!showUserDetails && searchFailed"
+    >
+      usuario no existe
+    </h1>
+  </div>
+</div>
